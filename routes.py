@@ -11,6 +11,7 @@ import socket
 import ipaddress
 
 # Mitigate SSRF risks // added this code by me
+@app.route('/analyzer')
 def follow_url():
     url = request.args.get('url', '')
     
@@ -39,14 +40,14 @@ def admin():
         return render_template('403.html')
 
 # SSRF
-@app.route('/analyzer')
+'''@app.route('/analyzer')
 def follow_url():
     url = request.args.get('url', '')
     if url:
         r = requests.get(url)
         return render_template('analyzer.html', req=r)
     else:
-        return render_template('analyzer-empty-state.html')
+        return render_template('analyzer-empty-state.html')''' 
 
 # XSS, CSRF (no CSRF-Token)
 @app.route('/guestbook', methods=['GET', 'POST'])
